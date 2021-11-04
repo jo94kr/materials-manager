@@ -1,6 +1,10 @@
 package com.materialsmanager.materialsmanager.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import com.materialsmanager.materialsmanager.repository.MainRepository;
 
@@ -13,9 +17,23 @@ public class MainService {
     @Autowired
     MainRepository mainRepository;
 
-    public List<String> testService() {
-        List<String> result = mainRepository.test();
+    public List<Map<String, Object>> getStuffList() {
+        List<Map<String, Object>> stuffList = mainRepository.getStuffList();
+        Map<String, Object> result = new HashMap<String, Object>();
+        List<Map<String, Object>> resultList = null;
 
-        return result;
+        String category = null;
+        System.out.println(result);
+
+        for (Map<String, Object> stuffMap : stuffList) {
+            category = stuffMap.get("STUFF_CATEGORY").toString();
+            resultList = new ArrayList<Map<String, Object>>();
+            resultList.add(stuffMap);
+            result.put(category, resultList);
+
+        }
+
+
+        return null;
     }
 }
