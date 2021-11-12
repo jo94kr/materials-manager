@@ -2,10 +2,10 @@ package com.materialsmanager.materialsmanager.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.materialsmanager.materialsmanager.DTO.MainDto;
 import com.materialsmanager.materialsmanager.repository.MainRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,11 @@ public class MainService {
 
         }
 
-
-        return null;
+        return stuffList;
     }
+
+    public void insertStuff(MainDto mainDto) {
+        mainRepository.insertStuff(mainDto);
+    }
+
 }

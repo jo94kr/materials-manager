@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.materialsmanager.materialsmanager.repository.MainRepository">
+    
     <select id="getStuffList" resultType="Hashmap">
         SELECT *
         FROM STUFF
     </select>
+
+    <insert id="insertStuff" parameterType="com.materialsmanager.materialsmanager.DTO.MainDto">
+        INSERT INTO STUFF('STUFF_CATEGORY', 'STUFF_NAME', 'STUFF_COUNT', 'RENTAL_COUNT', 'RETURN_COUNT')
+        VALUES(#{stuffCategory}, #{stuffName}, #{stuffCount}, #{rentalCount}, #{returnCount})
+    </insert>
 </mapper>
