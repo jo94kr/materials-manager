@@ -2,8 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.materialsmanager.materialsmanager.repository.MainRepository">
     
-    <select id="getStuffList" resultType="Hashmap">
-        SELECT *
+    <select id="getStuffList" resultType="com.materialsmanager.materialsmanager.DTO.MainDto">
+        SELECT 
+            STUFF_CATEGORY as 'stuffCategory',
+            STUFF_NAME as 'stuffName',
+            STUFF_COUNT as 'stuffCount',
+            RENTAL_COUNT as 'rentalCount',
+            RETURN_COUNT as 'returnCount'
         FROM STUFF
     </select>
 

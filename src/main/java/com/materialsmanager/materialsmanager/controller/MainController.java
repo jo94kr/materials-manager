@@ -1,7 +1,6 @@
 package com.materialsmanager.materialsmanager.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import com.materialsmanager.materialsmanager.DTO.MainDto;
 import com.materialsmanager.materialsmanager.service.MainService;
@@ -29,14 +28,16 @@ public class MainController {
     /**
      * 물품 리스트를 리턴
      * 
-     * @return mainService.getStuffList()
+     * @return stuffList
      */
     @ResponseBody
     @RequestMapping(value = "/getStuffList", method = RequestMethod.GET)
-    public List<Map<String, Object>> getStuffList() {
+    public List<MainDto> getStuffList() {
         log.debug("call getStuffList()");
 
-        return mainService.getStuffList();
+        List<MainDto> stuffList = mainService.getStuffList();
+
+        return stuffList;
 	}
 
     /**
@@ -48,6 +49,7 @@ public class MainController {
      * @param rentalCount
      * @param returnCount
      */
+    @ResponseBody
     @RequestMapping(value = "/insetStuff", method = RequestMethod.POST)
     public void insetStuff(MainDto mainDto) {
 

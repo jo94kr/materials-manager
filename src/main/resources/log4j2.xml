@@ -13,7 +13,7 @@
         </Console>
 
         <!--로그 파일-->
-        <RollingFile name="File" fileName="${BASE_DIR}/logs.log" filePattern="{BASE_DIR}/logs.%d{yyyyMMdd}.log">
+        <RollingFile name="File" fileName="${BASE_DIR}/logs.log" filePattern="${BASE_DIR}/logs.%d{yyyyMMdd}.log">
             <PatternLayout pattern="${LOG_FORMAT}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/> <!-- 매일(yyyy-MM-dd) log 파일 생성 -->

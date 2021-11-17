@@ -17,19 +17,13 @@ public class MainService {
     @Autowired
     MainRepository mainRepository;
 
-    public List<Map<String, Object>> getStuffList() {
-        List<Map<String, Object>> stuffList = mainRepository.getStuffList();
+    public List<MainDto> getStuffList() {
+        List<MainDto> stuffList = mainRepository.getStuffList();
         Map<String, Object> result = new HashMap<String, Object>();
-        List<Map<String, Object>> resultList = null;
 
         String category = null;
-        System.out.println(result);
-
-        for (Map<String, Object> stuffMap : stuffList) {
-            category = stuffMap.get("STUFF_CATEGORY").toString();
-            resultList = new ArrayList<Map<String, Object>>();
-            resultList.add(stuffMap);
-            result.put(category, resultList);
+        for (MainDto stuffMap : stuffList) {
+            category = stuffMap.getStuffCategory();
 
         }
 
