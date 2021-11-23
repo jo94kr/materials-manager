@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @AllArgsConstructor
-public class MainDto {
+public class StuffDto {
     private String stuffCategory;
     
     private String stuffName;
@@ -24,7 +24,9 @@ public class MainDto {
     @Builder.Default
     private int returnCount = 0;
 
-    public MainDto() {
+    private String etc;
+
+    public StuffDto() {
         stuffCount = 0;
         rentalCount = 0;
         returnCount = 0;

@@ -1,14 +1,17 @@
 package com.materialsmanager.materialsmanager.controller;
 
 import java.util.List;
+import java.util.Map;
 
-import com.materialsmanager.materialsmanager.DTO.MainDto;
+import com.materialsmanager.materialsmanager.DTO.StuffDto;
 import com.materialsmanager.materialsmanager.service.MainService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.log4j.Log4j2;
@@ -22,26 +25,36 @@ public class MainController {
 
     @RequestMapping(value="/")
     public String index() {
-        return "/index";
+        return "/test";
 	}
 
+    @ResponseBody
+    @RequestMapping(value = "/getCategoryList", method = RequestMethod.GET)
+    public List<String> getCategoryList() {
+        log.debug("call getCategoryList");
+
+        List<String> categoryList = mainService.getCategoryList();
+
+        return categoryList;
+    }
+
     /**
-     * 물품 리스트를 리턴
      * 
      * @return stuffList
      */
     @ResponseBody
     @RequestMapping(value = "/getStuffList", method = RequestMethod.GET)
-    public List<MainDto> getStuffList() {
-        log.debug("call getStuffList()");
+    public List<StuffDto> getStuffList(
+        @RequestParam(value = "categoryList[]") List<String> categoryList
+    ) {
+        log.info("call getStuffList(categoryList : {})", categoryList);
 
-        List<MainDto> stuffList = mainService.getStuffList();
+        List<StuffDto> stuffList = mainService.getStuffList(categoryList);
 
         return stuffList;
 	}
 
     /**
-     * 물품 추가
      * 
      * @param stuffCategory
      * @param stuffName
@@ -51,8 +64,7 @@ public class MainController {
      */
     @ResponseBody
     @RequestMapping(value = "/insetStuff", method = RequestMethod.POST)
-    public void insetStuff(MainDto mainDto) {
-
+    public void insetStuff(StuffDto mainDto) {
         log.debug("call insetStuff() {}", mainDto);
 
         mainService.insertStuff(mainDto);
