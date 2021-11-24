@@ -1,14 +1,12 @@
 package com.materialsmanager.materialsmanager.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import com.materialsmanager.materialsmanager.DTO.StuffDto;
 import com.materialsmanager.materialsmanager.service.MainService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +32,6 @@ public class MainController {
         log.debug("call getCategoryList");
 
         List<String> categoryList = mainService.getCategoryList();
-
         return categoryList;
     }
 
@@ -45,12 +42,11 @@ public class MainController {
     @ResponseBody
     @RequestMapping(value = "/getStuffList", method = RequestMethod.GET)
     public List<StuffDto> getStuffList(
-        @RequestParam(value = "categoryList[]") List<String> categoryList
+        @RequestParam(value = "categoryList") List<String> categoryList
     ) {
         log.info("call getStuffList(categoryList : {})", categoryList);
 
         List<StuffDto> stuffList = mainService.getStuffList(categoryList);
-
         return stuffList;
 	}
 
