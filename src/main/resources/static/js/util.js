@@ -38,8 +38,9 @@ async function get(url, params) {
  * @param {Array} headers 
  * @returns 
  */
-async function post(host, path, body, headers = {}) {
-    const url = `https://${host}/${path}`;
+async function post(url, body, headers = {}) {
+    console.log(body);
+    console.log(JSON.stringify(body));
     const options = {
         method: "POST",
         headers: {
@@ -57,10 +58,6 @@ async function post(host, path, body, headers = {}) {
     }
 }
 
-function drawTableHead(data) {
-
-}
-
 /**
  * 지정한 타겟에 테이블 바디 렌더링
  * 
@@ -70,7 +67,7 @@ function drawTableHead(data) {
  */
 function drawTableBody(data, target, excludeCols) {
     let tableArea = document.querySelector(target);
-    let table = document.createElement("table");
+
     console.log(data);
     data.forEach(element => {
         if (arguments.length == 3 && typeof excludeCols == "Array" && excludeCols.length > 0) {
@@ -79,12 +76,10 @@ function drawTableBody(data, target, excludeCols) {
             });
         }
 
-        let tr = table.insertRow();
+        let tr = tableArea.insertRow();
         for (var key in element) {
             let td = tr.insertCell();
             td.innerText = element[key]
         }
     });
-
-    tableArea.appendChild(table);
 }

@@ -14,7 +14,8 @@
             STUFF_NAME as `stuffName`,
             STUFF_COUNT as `stuffCount`,
             RENTAL_COUNT as `rentalCount`,
-            RETURN_COUNT as `returnCount`
+            RETURN_COUNT as `returnCount`,
+            ETC as `etc`
         FROM STUFF
         WHERE STUFF_CATEGORY IN
             <foreach item="categoryList" collection="list" open="(" separator="," close=")">
@@ -23,7 +24,7 @@
     </select>
 
     <insert id="insertStuff" parameterType="StuffDto">
-        INSERT INTO STUFF('STUFF_CATEGORY', 'STUFF_NAME', 'STUFF_COUNT', 'RENTAL_COUNT', 'RETURN_COUNT')
-        VALUES(#{stuffCategory}, #{stuffName}, #{stuffCount}, #{rentalCount}, #{returnCount})
+        INSERT INTO STUFF('STUFF_CATEGORY', 'STUFF_NAME', 'STUFF_COUNT', 'RENTAL_COUNT', 'RETURN_COUNT', 'ETC')
+        VALUES(#{stuffCategory}, #{stuffName}, #{stuffCount}, #{rentalCount}, #{returnCount}, #{etc})
     </insert>
 </mapper>
